@@ -1,0 +1,36 @@
+Welcome to Week 9
+
+Note: this file will be augmented after the class.
+
+adduser - adds a user with a script to capture all that juicy data
+
+useradd - barebones, you need to set the switches for things like 
+creating the user's home directory (-m), etc.
+
+su  - switch user
+
+su -  - switch user initialize their environment
+
+whoami - returns the login for the current user
+
+chgrp - change the group ownership of a file
+
+newgrp - switches the current group of the current user
+
+groupadd - adds a new group to the system.
+
+Environment
+
+alias
+
+unalias
+
+env
+
+$PATH
+
+export
+
+export -f 
+
+
