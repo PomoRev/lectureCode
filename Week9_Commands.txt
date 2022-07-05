@@ -34,3 +34,6 @@ export
 export -f 
 
 
+sudo snap install code --classic    type exact to install VSCode in Linux and your life will be much better. 
+
+
