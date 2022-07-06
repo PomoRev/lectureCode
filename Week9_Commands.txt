@@ -2,6 +2,8 @@ Welcome to Week 9
 
 Note: this file will be augmented after the class.
 
+1. USER/GROUP MANAGEMENT COMMANDS
+
 adduser - adds a user with a script to capture all that juicy data
 
 useradd - barebones, you need to set the switches for things like 
@@ -9,23 +11,45 @@ creating the user's home directory (-m), etc.
 
 su  - switch user
 
-su -  - switch user initialize their environment
+su -  - switch user initialize their environment, including starting
+in the new user's home folder.
 
-whoami - returns the login for the current user
+whoami - returns the login for the current user. You can also
+extract a user's name from the passwd file. 
 
-chgrp - change the group ownership of a file
+chgrp - change the group ownership of a file (similar to chown and 
+chmod)
 
-newgrp - switches the current group of the current user
+newgrp - switches the current group of the current user, this 
+allows them to create and manage files which have the new
+group's ownership. This is for collaboration purposes. You leave 
+the new group with the exit command.
 
 groupadd - adds a new group to the system.
 
-Environment
+id - displays the current user's group (good to confirm you are 
+doing your work from the correct group). 
 
-alias
 
-unalias
+2. UNIX SHELL ENVIRONMENT 
 
-env
+alias - lists all of the currently set aliases. The shell will 
+do a direct replacement of any alias for the aliased data unless
+you quote it. 
+
+alias [name]=[replacement text]  - sets a new alias, note the
+spacing. The rule of thumb is that if there is no space in an 
+attribute it is a single attribute, otherwise spaces delimit
+parameters in a command line.
+
+Because an alias is directly replaced with the replacement text 
+it can be combined with other attributes and commands.
+
+unalias [alias name] - removes an alias from your environment. 
+Aliases also die with your session, so if you close your bash 
+shell you will lose any aliases you set from the command line.
+
+env - displayes the environment variables
 
 $PATH
 
