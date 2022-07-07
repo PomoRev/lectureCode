@@ -49,15 +49,55 @@ unalias [alias name] - removes an alias from your environment.
 Aliases also die with your session, so if you close your bash 
 shell you will lose any aliases you set from the command line.
 
-env - displayes the environment variables
+env - displayes the environment variables (similar to export -f). env is also 
+used to create an environment for running commands. In our context we are 
+more concerned with using the informational aspect of the command. The man page 
+will reveal more of its capabilities. 
 
-$PATH
+$PATH - this is one of the environment variables. I chose this one because it 
+is useful for knowing where the shell will look for programs (commands and applications)
+to run. The variable is actually called PATH, using the $ symbol says to interpret the following
+symbol, to show its value. The command echo $PATH will display the contents of PATH on
+the screen (stdout). If you cannot run commands has this variable been changed?
 
-export
+In terms of environment variables and aliases, in order to have them persist beyond the
+current instance of your shell you will need to add them to a script like .bashrc or .bash_profile 
+in order to have them available in your BASH shell experience. (.bashrc runs whenever you open a 
+terminal and .bash_profile is run once to set up future instances of the BASH shell for a user.)
+
+In addition to variables (sometimes called system variables in other OSes, but here it is best
+to think of them as SHELL variables) and aliases you can also export functions into the env 
+(environment) using the export command.
+
+To demonstrate this we used the following commmand to make a simple function:
+
+hello () { echo “hello!”; }
+
+Then we exported it into the environment with the command
+
+export -f hello
+
+This makes hello, the function, to be available throughout this instance of the BASH shell. We 
+simply need to invoke the function using the exported name:
+
+hello
+
+We can list all the exported functions with 
 
 export -f 
 
+3. BASH SHELL SCRIPTING
 
-sudo snap install code --classic    type exact to install VSCode in Linux and your life will be much better. 
+See first.sh.
+
+======
+
+For those wishing to install VS Code, you can use the snap package installer using the command:
+
+sudo snap install code --classic    
+
+You should type this entire command as written to install VSCode in Linux (and your life 
+will be much better). Note that the --classic mode of install drops some of the security measures
+so that VS Code can be set up as it needs to be set up.   
 
 
