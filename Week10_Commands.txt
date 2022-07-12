@@ -1,0 +1,32 @@
+BASH cheat sheet of the week!
+https://devhints.io/bash
+
+[[ coniditional expression ]]   ( [[ is a command that returns a boolean value )
+
+Numbers 
+[[ number -eq number ]]  (-ne,-lt,-le,-gt,-ge) comparison
+
+Strings
+
+[[ -z stringname ]] is the string empty?
+[[ -n stringname ]] is the string not empty? same as [[ ! -z stringname ]]
+[[ stringname == stringname ]] equality
+[[ stringname != stringname ]] inequality
+
+Files
+
+[[ -e filename ]] does the file exist?
+[[ -r filename ]] is the file readable?
+[[ -d filename ]] is the file a directory?
+[[ -w filename ]] is the file writable?
+[[ -x filename ]] is it executable?
+[[ -f filename ]] is it a file?
+[[ filename1 -nt filename2 ]] is filename1 newer than filename2
+[[ filename1 -ot filename2 ]] is filename1 older than filename2
+[[ filename1 -ef filename2 ]] is filename1 the same as filename2
+
+! - reverses the boolean value (NOT operator)
+
+&& - logical AND connector
+|| - logical OR connector
+
