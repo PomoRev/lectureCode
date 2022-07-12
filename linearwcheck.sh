@@ -3,6 +3,12 @@
 # Linear with Check Script
 # Prof. Frank Emanuel
 
+echo $PATH
+
+PATH="/bin:/usr/bin"; export PATH
+
+echo $PATH
+
 file_name='hello'
 file_extension='txt'
 
