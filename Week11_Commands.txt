@@ -1,0 +1,68 @@
+TERMINALS AND SHELLS
+
+
+
+
+CONDITIONAL BRANCHING (continued)
+
+
+
+
+LOOPING
+
+
+
+
+BASH SPECIAL CHARACTERS 
+
+␢           Whitespace character is used to delimit 
+            words and parameters. 
+$           Expansion
+'content'   Single Quotes are used to preserve the literal 
+            value of the content, variables and GLOB characters 
+            will not be expanded.
+"content"   Double Quotes are used to protect the words inside 
+            from splitting but does not restrict expansion 
+            using the $ symbol.
+\           Escape (backslash) prevents the next character from 
+            being interpreted as a special character, works outside 
+            of quotes or inside double quotes, but not inside single 
+            quotes where it is ignored.
+#           Comment
+=           Assignment where whitespace is not allowed on either 
+            side of the assignment character.
+[[ expression ]]    Test used to evaluate an expression and 
+                    return a Boolean value
+!           Negate will reverse a test result or the exit status 
+            of a function or command (Boolean NOT)
+>, >>, <    Redirection:
+    <       Redirects the stdio output to the previous command
+    <<      Redirects a document to the previous command
+    <<<     Redirects a string to the previous command
+|           Pipe which sends the output from one command to another.
+;           End command is used to separate commands on a single line.
+{ }         Inline operator causes the commands inside to be 
+            treated as if they were a single command and can be used 
+            to create anonymous functions or preserve whitespace in 
+            expansion. This is also used for brace expansion like in 
+            our fancy for…in loop. 
+( )         Subshell group which will execute commands in a new 
+            process (subshell) so that we do not need to worry about 
+            any variables that may be changed. Think of it like calling 
+            a function with its own temporary local environment.
+(( ))       Arithmetic expression when used without a $ character you can 
+            actually do assignments inside: (( foo = 8 + 9 ))
+&           Run in background can be added to the end of a command so 
+            that the shell script will not wait for it to complete 
+            before beginning the next command. 
+
+
+READ COMMAND 
+
+
+
+STRING SLICING AND REPRESENTATION THROUGH EXPANSION 
+
+
+
+
