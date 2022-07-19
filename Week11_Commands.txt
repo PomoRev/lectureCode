@@ -5,10 +5,54 @@ TERMINALS AND SHELLS
 
 CONDITIONAL BRANCHING (continued)
 
+if [expression]; then
 
+    echo expression is true
+
+elif [expression]; then
+
+    echo other expression is true, but not first one
+
+else
+
+    echo neither were true
+
+fi
+
+case statement
 
 
 LOOPING
+
+#C style for loop
+
+for (( i=0; i < 4; i++ ))
+do
+    echo " loop $i"
+done 
+
+#Fancy for loops
+
+# data iteration
+
+for line in $(ls)
+do
+    echo ":: $line"
+done
+
+# range iteration
+
+for i in {a..g}
+do
+    touch "file_$i.txt"
+done
+
+#While loops
+
+ls | while read line
+do
+    echo "---> $line"
+done
 
 
 
