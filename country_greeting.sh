@@ -1,4 +1,6 @@
-#!/bin/bash
+
+#!/bin/bash -u
+
 #
 # This code takes a country name as a command 
 # line parameter and attempts to form an
@@ -65,8 +67,3 @@ esac
 
 
 if [[ $prepend == true ]]; then echo " $USER"; fi
-
-
-
-
-

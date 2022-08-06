@@ -1,0 +1,135 @@
+1. MENU CODE (see repository)
+
+2. PARSING
+
+    One of the primary tasks we do in coding is parsing data 
+    from various streams and other sources. In our menu we 
+    parsed the passwd file using grep and cut, allowing us to 
+    obtain just the information we needed. Note that when parsing 
+    a data source, it is often more efficient to verify the 
+    parsing before using parsed data - for example, it is better 
+    to verify that we were able to grab the directory we wanted 
+    from passwd before we attempted to do anything with that 
+    directory. Test-to-code is the best approach to coding 
+    sanely and effectively. 
+
+3. SUBSTITUTION
+
+    $( command )    is command subsitution where it runs the command 
+                    in a new shell instance (this is called sandboxing)
+                    and returning to the expansion the value created by
+                    the command, usually something in the standard out.
+
+    <( command )    process substitution will feed the command results 
+                    into the previous process. We saw this in the 
+                    while ... read loop where we cannot use the process 
+                    as part of the read because the read is an evaluation
+                    that happens every loop, by using process substition
+                    we can send all of the data to the read statement 
+                    and only run the command once. See below:
+
+            while read -a lsline
+            do
+                if [[ ${#lsline[4]} > 3 ]]
+                then
+                    echo "${lsline[8]} is superlarge!"
+                fi
+            done < <( ls -l )
+
+            echo "Done"
+
+4. ARRAYS
+
+    In the above example we introduce array notation. Note that arrays, in 
+    BASH begin at offset 0. 
+
+    We can declare arrays in two ways:
+
+        declare -a my_array     # creates an empty array
+        my_array=(red green yellow pink orange blue) # creates and fills an array
+
+    If we are to expand the content of the whole array the results usually only 
+    give us the first item, use with caution:
+
+        echo ${my_array}
+        echo $my_array
+
+    The proper way to retrieve an element from the array is with array notation:
+
+        echo ${my_array[3]}   # which prints out pink
+
+    We can also show the whole array in two ways:
+
+        echo ${my_array[*]}   # expands to a single string with all the fields
+        echo ${my_array[@]}   # expands to all of the elements but 
+                                as separate arguments
+
+    We can manipulate our array but assigning a value to an element: 
+
+        my_array[6]='brown'   # adds a new colour to our array
+
+    We can also return the number of elements in an array:
+
+        echo ${#my_array[*]}  # expands to the number 7 (there are now 7 colours)
+
+        note that ${#my_array[3]} will expand to the character count of the 
+        fourth element!
+
+    BONUS:
+    Instead of multidimensional arrays we often include delimited content in each 
+    array element which we can parse out.
+
+        my_complex_array=(carrot:14:1.02 radish:3:.89 iceberg_lettuce:12:2.45)
+
+    Note that in this example if we grab the second element it will be the whole 
+    element:
+
+        ${my_complex_array[1]} holds  "radish:3:.89"
+
+    BONUS:
+    The language awk is used for parsing files. We can write one line to do what
+    would take us many lines in BASH:
+
+    ls -l > filetoparse.dat
+    awk '$5 > 999{print $9}' filetoparse.dat
+
+    This will list the same files as our while loop above.
+
+    The biggest perk about awk is that we can have some complex logic in our 
+    statement because there is a whole language to awk. 
+
+5. MAKING IT PRETTY
+
+    The tput command (terminal put) will allow us to send special codes to the 
+    terminal to do things like change the colour of a letter
+
+    tput setaf 4    # Turns on blue for the next output
+    tput setab 7    # Turns the background white
+
+    (Try setting the background colour and clearing the screen!)
+
+    The standard colours are:
+        0 - Black
+        1 - Red 
+        2 - Green 
+        3 - Yellow 
+        4 - Blue 
+        5 - Magenta 
+        6 - Cyan 
+        7 - White 
+
+    We can also set other things like:
+
+    tput bold      # Turns on bolder letters
+    tput smul      # Starts underline mode
+    tput rmul      # Ends underline mode
+    tput sgr0      # Turns off all attributes
+
+    There are others to discover, but this will let you make some pretty 
+    snazzy menus! 
+
+fini
+
+
+
+

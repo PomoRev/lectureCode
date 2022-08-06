@@ -1,0 +1,97 @@
+BASH cheat sheet of the week!
+https://devhints.io/bash
+
+Note: Lab 7 Assumes you use the header suggested by Prof. Shavit as follows
+
+#!/bin/bash -u
+PATH="/bin:/usr/bin"; export PATH
+umask 022
+
+After that please include your name in a comment!
+
+Scripts will either need to be run from a command line invocation of 
+a shell or be made executable in the file system. 
+
+THE if STATEMENT
+
+if [[ conditional expression ]]; then
+    statements
+elif [[ conditional expression ]]; then
+    statements
+else
+    statements
+fi 
+
+Other than some strange syntax, the if statement works exactly as you would
+expect. Conditional expressions on the other hand...
+
+CONDITIONAL EXPRESSIONS
+
+[[ coniditional expression ]]   ( [[ is a command that returns a boolean value )
+
+Numbers 
+[[ number -eq number ]]  (-ne,-lt,-le,-gt,-ge) comparison
+
+Strings
+
+[[ -z stringname ]] is the string empty?
+[[ -n stringname ]] is the string not empty? same as [[ ! -z stringname ]]
+[[ stringname == stringname ]] equality
+[[ stringname != stringname ]] inequality
+
+Files
+
+[[ -e filename ]] does the file exist?
+[[ -r filename ]] is the file readable?
+[[ -d filename ]] is the file a directory?
+[[ -w filename ]] is the file writable?
+[[ -x filename ]] is it executable?
+[[ -f filename ]] is it a file?
+[[ filename1 -nt filename2 ]] is filename1 newer than filename2
+[[ filename1 -ot filename2 ]] is filename1 older than filename2
+[[ filename1 -ef filename2 ]] is filename1 the same as filename2
+
+! - reverses the boolean value (NOT operator)
+
+&& - logical AND connector
+|| - logical OR connector
+
+
+COMMAND LINE PARAMETERS
+
+When we create a script we are making an executable that can take and 
+parse any number of command line parameters. Note that command line 
+parameters are delimited by spaces and will expand GLOB patterns. These built 
+in variables are set by the shell to handle command line parameters.
+
+$#  returns the number of command line parameters (can change with shift)
+$*  returns all of the parameters as a single string
+$@  returns all of the parameters as separate strings
+$0  returns the command (does not change with shift)
+$1..9   returns each of the first 9 parameters, $1 for the first one, etc. 
+
+shift # where the # represents a number of arguments to throw away, shifts
+        the position of $1 to the next element essentially allowing us to 
+        use more than 9 parameters.
+
+
+VARIABLES IN BASH
+
+Variables do simple symbolic replacement in BASH, think copy and paste. Hence we 
+can run into interesting situtations when we use a variable with a space in it. 
+
+name="Frank Emanuel"
+
+echo $name          only returns the first name because it does not retain the 
+                    quotation marks
+echo ${name}   or echo "$name"   will retain the space and hence print the whole
+                    name.
+
+
+Variables also have local scope within a script, and this is true of functions which 
+can have local variables (which it uses by preference) and access to the calling 
+context's variables. Global variables are those available to the BASH instance and 
+can be seen with the env command. 
+
+
+

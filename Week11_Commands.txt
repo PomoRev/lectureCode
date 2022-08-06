@@ -1,0 +1,227 @@
+TERMINALS AND SHELLS
+
+Often these terms are conflated in conversations about UNIX operating systems. 
+But they are actually two different tools. A terminal comes from the original 
+hardware base where you used "dumb terminals" to connect to a mainframe computer
+and those terminals did not have their own computing power, they simply
+sent and received streams of ASCII characters to the computer and from the 
+computer to the printer and later to the screen. Terminals have evolved, but 
+the typical terminal experience for Linux users is an emulation of terminal 
+that pretends it is communicating and gives you an ASCII text based window. This 
+is why VIM is still taught, that terminal is found everywhere so you need a 
+tool like VIM to work in that kind of terminal when you do not have access to a 
+graphical terminal like the X client (looks like Windows). 
+
+Shells run inside of terminal sessions and allow us to automate the computer's 
+tasks. In the early days of home computing you had a similar situation where 
+computers booted into interpreters, Microsoft BASIC being the most famous, instead 
+of disk operating systems like we see with Linux BASH and Windows NT Command shell. 
+
+You can think of shells as a standardized set of logic that allows you to interact
+with the operating systems core services and utilities. And the terminal is what 
+creates the connection that the shell uses when it sends characters back and forth.
+
+
+CONDITIONAL BRANCHING (continued)
+
+if [expression]; then
+
+    echo expression is true
+
+elif [expression]; then
+
+    echo other expression is true, but not first one
+
+else
+
+    echo neither were true
+
+fi
+
+The if..elif..else statement is fairly universal in modern languages today. 
+
+case statement
+
+The case statement is used to do simple pattern matching. It uses the following
+rules:
+
+-	Start with case ends with esac
+-	Performs simple pattern matching (strings and characters)
+-	Multiple patterns use an or (|) operator
+-	Patterns with spaces must be quoted
+-	Patterns can have special characters (GLOB) although it does 
+    not use RegEx, just BLOG pattern matching.
+-	Every pattern set ends with a closing parenthesis ) character
+-	The * GLOB pattern is used to catch all other cases, 
+    like an else or a default case
+-	The pattern and the statements that belong to that pattern being 
+    matched are called a clause
+-	Every clause must end with a double semi-colon ;;
+-	Only the first match for a clause will be executed.
+-	Once a pattern is matched once the program flow continues 
+    past the case statement. 
+
+case [value] in 
+
+    [pattern(s)])
+
+        statements....
+        ;;
+
+    *)  #default pattern, think about how GLOB works
+
+        statemetns....
+        ;;
+
+esac 
+
+
+LOOPING
+
+In terms of looping if you know how many times you are going to loop 
+before you start the loop then you use a for loop (of some variety),
+otherwise you use a traditional indefinite loop aka a while loop.
+
+
+The C style for loop
+
+for (( i=0; i<4; i++ ))
+do
+    echo " loop $i"
+done 
+
+
+Data iteration for loop
+
+for line in $(ls)
+do
+    echo ":: $line"
+done
+
+Range iteration for loop
+
+for i in {a..g}
+do
+    touch "file_$i.txt"
+done
+
+Traditional While loop
+
+ls | while read line
+do
+    echo "---> $line"
+done
+
+Although a better use case for a while loop is around a control bock for 
+a menu or block where we cannot calculate the number of iterations before 
+we run the loop.
+
+
+EXPANSION
+
+The notion of expansion is that that an expression or command is evaluated and 
+the results are returned as the "expanded" value. 
+
+$variable_name or ${variable_name} both expand the variable to what value 
+it currently holds
+
+$( command ) runs the command in a subshell and expands into the returned
+results, these commands can also have their own output
+
+$(( mathematical_expression )) this will perform the math and expand into the 
+result of the mathematical expression.
+
+
+
+BASH SPECIAL CHARACTERS 
+
+Here is a handy reference:
+
+␢           Whitespace character is used to delimit 
+            words and parameters. 
+$           Expansion
+'content'   Single Quotes are used to preserve the literal 
+            value of the content, variables and GLOB characters 
+            will not be expanded.
+"content"   Double Quotes are used to protect the words inside 
+            from splitting but does not restrict expansion 
+            using the $ symbol.
+\           Escape (backslash) prevents the next character from 
+            being interpreted as a special character, works outside 
+            of quotes or inside double quotes, but not inside single 
+            quotes where it is ignored.
+#           Comment
+=           Assignment where whitespace is not allowed on either 
+            side of the assignment character.
+[[ expression ]]    Test used to evaluate an expression and 
+                    return a Boolean value
+!           Negate will reverse a test result or the exit status 
+            of a function or command (Boolean NOT)
+>, >>, <    Redirection:
+    <       Redirects the stdio output to the previous command
+    <<      Redirects a document to the previous command
+    <<<     Redirects a string to the previous command
+|           Pipe which sends the output from one command to another.
+;           End command is used to separate commands on a single line.
+{ }         Inline operator causes the commands inside to be 
+            treated as if they were a single command and can be used 
+            to create anonymous functions or preserve whitespace in 
+            expansion. This is also used for brace expansion like in 
+            our fancy for…in loop. 
+( )         Subshell group which will execute commands in a new 
+            process (subshell) so that we do not need to worry about 
+            any variables that may be changed. Think of it like calling 
+            a function with its own temporary local environment.
+(( ))       Arithmetic expression when used without a $ character you can 
+            actually do assignments inside: (( foo = 8 + 9 ))
+&           Run in background can be added to the end of a command so 
+            that the shell script will not wait for it to complete 
+            before beginning the next command. 
+
+
+READ COMMAND 
+
+The read command will read input from the stdin stream and puts it in a
+variable or set of variables. The read command has a default named location 
+($REPLY) that can be used to access the read data. Read is a great way to 
+collect user input in a script or simply to capture data from a command 
+or a file. If we want to read in all the values in an array we can use the
+-a option, if we want to output a prompt the -p option is helpful. 
+
+read -p "What is your name?: " username
+
+or 
+
+read var1 var2 <<< "Hello World"
+
+
+STRING SLICING AND REPRESENTATION THROUGH EXPANSION 
+
+${name}         expands as the value of the variable name
+                it is a literal string replacement
+
+Using the format ${variablename:position:length} we can slice up
+the expanded string into substrings.
+
+${name:0:1} or ${name::1}   expands to the first character of the 
+                string value in name
+${name::4}      expands to the first four characters of the value
+                in name
+${name: -1:1}   expands to the last character of the value in name
+${name: -2:2}   expands to the last two characters of the value in name
+
+We can use similar syntax to do simple character replacement.
+
+${name/F/f}     expands to the value in name but all capital F characters
+                are expanded as lowercase fs.
+
+We can also use default values for when variables may not be set yet. And
+finally we can change the case of the expanded value:
+
+${name,,}       expands to the value of name but all alphabetic characters
+                are converted to lower case (just one , will make only the
+                first character small)
+${name^^}       same as above but will capitalize all the alphabetic
+                characters and there is also a single ^ version for just 
+                the first letter of the value name.
+
