@@ -1,0 +1,27 @@
+total 76
+-rwxrwxr-x 1 prof prof  996 Jul 24 20:39 country_greeting.sh
+-rw-rw-r-- 1 prof prof    0 Jul 24 20:39 file_a.txt
+-rw-rw-r-- 1 prof prof    0 Jul 24 20:39 file_b.txt
+-rw-rw-r-- 1 prof prof    0 Jul 24 20:39 file_c.txt
+-rw-rw-r-- 1 prof prof    0 Jul 24 20:39 file_d.txt
+-rw-rw-r-- 1 prof prof    0 Jul 24 20:39 file_e.txt
+-rw-rw-r-- 1 prof prof    0 Jul 24 20:39 file_f.txt
+-rw-rw-r-- 1 prof prof    0 Jul 24 20:39 file_g.txt
+-rw-rw-r-- 1 prof prof    0 Jul 26 22:50 filetoparse.dat
+-rwxrwxr-x 1 prof prof  229 Jul 15 18:56 first.sh
+-rwxrwxr-x 1 prof prof  370 Jul 15 18:56 functions.sh
+-rwxrwxr-x 1 prof prof  154 Jul 15 18:56 funwithfunctions.sh
+-rw-rw-r-- 1 prof prof   24 Jul 15 18:56 goodbye.txt
+-rw-rw-r-- 1 prof prof   20 Jul 15 18:56 hello.txt
+-rw-rw-r-- 1 prof prof   24 Jul 15 18:56 hello.world
+drwxrwxr-x 3 prof prof 4096 Jul 26 22:28 lectureCode
+-rwxrwxr-x 1 prof prof  159 Jul 15 18:56 linear.sh
+-rwxrwxr-x 1 prof prof  415 Jul 15 18:56 linearwcheck.sh
+-rwxrwxr-x 1 prof prof  652 Jul 15 18:56 linearwparams.sh
+-rw-rw-r-- 1 prof prof  169 Jul 15 18:56 readme.txt
+-rw-rw-r-- 1 prof prof   24 Jul 15 18:56 red.twelve
+-rwxrwxr-x 1 prof prof  309 Jul 15 18:56 scope.sh
+-rw-rw-r-- 1 prof prof 3096 Jul 15 18:56 Week10_Commands.txt
+-rw-rw-r-- 1 prof prof 8073 Jul 24 21:22 Week11_Commands.txt
+-rw-rw-r-- 1 prof prof 3835 Jul 15 18:56 Week9_Commands.txt
+-rwxrwxr-x 1 prof prof  124 Jul 24 20:39 whilefun.sh
