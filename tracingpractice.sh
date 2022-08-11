@@ -5,7 +5,7 @@ suits=(hearts spades diamonds clubs)
 for suit in ${suits[*]}
 do
     suit=${suit^^}
-    for ((i=0; i<${#suit}; i++))
+    for ((i=0; i<${#suits[*]}; i++))
     do
         echo -n ${suit::1}
     done
